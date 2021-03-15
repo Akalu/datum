@@ -9,15 +9,19 @@ import java.util.Map.Entry;
 import org.datum.datasource.impl.TrieDataSource;
 import org.datum.datasource.model.TrieNode;
 
+/**
+ * Different tools for debugging and visualizations
+ * 
+ * @author akaliutau
+ *
+ */
 public class DebugUtil {
-	
-	
 	
 	public static List<String> getTrieAsList(TrieDataSource trie){
 		List<String> ret = new ArrayList<>();
 		Queue<TrieNode> q = new LinkedList<>();
 		q.add(trie.getRoot());
-		//ret.add(trie.getName());
+
 		while(!q.isEmpty()) {
 			TrieNode curNode = q.poll();
 			for (Entry<String, TrieNode> entry : curNode.getEntries()) {
@@ -28,7 +32,6 @@ public class DebugUtil {
 		}
 		return ret;
 	}
-	
 	
 	
 }

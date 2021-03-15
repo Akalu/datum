@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.datum.datasource.RandomDataSource;
 
-public class SurnameDataSource implements RandomDataSource{
+public class NameDataSource implements RandomDataSource{
 
 	@Override
 	public Map<String, Object> getData() {

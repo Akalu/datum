@@ -8,7 +8,7 @@ import org.datum.generator.GeneratorType;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Added just for testing
+ * Added for testing
  * 
  * @author akaliutau
  *
