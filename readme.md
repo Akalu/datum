@@ -11,6 +11,8 @@ The main features:
 
 * Fully customizable data generator classes
 
+* High-performance and memory-effective engine
+
 * Accurate, realistic and human-readable generated data (currently US and UK - styled addresses are supported, more than 1000 real female and male first names, different generators for surnames, and more)
 
 # How to install

@@ -4,6 +4,14 @@ import org.datum.datasource.FieldSet;
 import org.datum.datasource.model.OrderedTypedFieldSet;
 import org.datum.datasource.model.UnorderedTypedFieldSet;
 
+/**
+ * 
+ * Used to convert unordered set to ordered one
+ * Basically this is just an re-arrangement of elements
+ * 
+ * @author akaliutau
+ *
+ */
 public class OrderConverter implements Processor<FieldSet> {
 
 	private String[] mergePath;
@@ -16,7 +24,7 @@ public class OrderConverter implements Processor<FieldSet> {
 	public FieldSet proceed(FieldSet t) {
 		UnorderedTypedFieldSet fields = (UnorderedTypedFieldSet) t;
 
-		OrderedTypedFieldSet res = new OrderedTypedFieldSet(fields.size());
+		OrderedTypedFieldSet res = new OrderedTypedFieldSet(fields.values());
 		return res;
 	}
 }

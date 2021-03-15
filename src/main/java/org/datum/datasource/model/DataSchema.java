@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class DataSchema {
 
-	private Map<String, Integer> indexMap = new HashMap<>();
+	private final Map<String, Integer> indexMap = new HashMap<>();
 
 	private final String[] headerLine;
 	private final String[] typeMap;
@@ -26,7 +26,7 @@ public class DataSchema {
 		this.typeMap = new String[size];
 	}
 
-	public void addType(String fieldName, String className, int pos) throws ClassNotFoundException {
+	public void addType(String fieldName, String className, int pos) {
 		headerLine[pos] = fieldName;
 		typeMap[pos] = className;
 		indexMap.put(fieldName, pos);

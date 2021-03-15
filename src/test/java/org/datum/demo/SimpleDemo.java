@@ -4,15 +4,22 @@ import java.util.List;
 
 import org.datum.configuration.impl.InMemoryConfigurator;
 import org.datum.core.DataGenerator;
+import org.datum.pojo.AddressPojo;
 import org.datum.pojo.SimplePojo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SimpleDemo {
 	
 	public static void main(String[] args) throws Exception {
-		DataGenerator<SimplePojo> gen = new DataGenerator<>(new InMemoryConfigurator());
+		DataGenerator<AddressPojo> gen = new DataGenerator<>(new InMemoryConfigurator());
 		gen.addGenerator(new AddressGenerator());
-		SimplePojo pojo = gen.getOne();
-		List<SimplePojo> pojoLi = gen.getBatch(100);
+		AddressPojo pojo = gen.getOne();
+		List<AddressPojo> pojoLi = gen.getBatch(5);
+		log.info(pojo.toString());
+		log.info(pojoLi.toString());
+		
 		
 	}
 }

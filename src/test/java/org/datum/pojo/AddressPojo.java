@@ -11,13 +11,13 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SimplePojo implements Serializable {
-	private static final long serialVersionUID = 101L;
+public class AddressPojo implements Serializable {
+	private static final long serialVersionUID = 100L;
 
-	private String firstName;
-	private String middleName;
-	private String lastName;
-	private int age;
 	private String address;
+	private String country;
+	private String state;
+	private String city;
+	private String zipCode;
 	
 }

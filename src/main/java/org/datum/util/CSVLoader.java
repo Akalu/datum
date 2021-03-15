@@ -53,7 +53,7 @@ public class CSVLoader {
 			if (headerLine == null) {
 				log.warn("csv file is empty");
 			}
-			log.info("read header: {}", Arrays.toString(headerLine));
+			log.debug("read header: {}", Arrays.toString(headerLine));
 
 			String[] nextLine;
 			int count = 0;
@@ -64,7 +64,7 @@ public class CSVLoader {
 				totalCount++;
 				if (null != nextLine) {
 					try {
-						log.info("read : {}", Arrays.toString(nextLine));
+						log.debug("read : {}", Arrays.toString(nextLine));
 						pipe.process(new UnorderedStringFieldSet(nextLine));
 						count++;
 					} catch (IllegalArgumentException e) {
@@ -74,14 +74,14 @@ public class CSVLoader {
 				}
 				if (count % batchSize == 0) {
 
-					log.info("saving data, batch {}", count / batchSize);
+					log.debug("saving data, batch {}", count / batchSize);
 				}
 			}
 			// insert remaining records
 
-			log.info("total records processed: {}", totalCount);
-			log.info("inserted: {}", count);
-			log.info("omitted: {}", invalidCount);
+			log.debug("total records processed: {}", totalCount);
+			log.debug("inserted: {}", count);
+			log.debug("omitted: {}", invalidCount);
 
 		} catch (Exception e) {
 			throw new Exception("Error occured while executing file. " + e.getMessage());

@@ -5,38 +5,43 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import lombok.Getter;
 
 public class TrieNode {
-	@Getter
-	private final String name;
-
+	
+	public static final char separator = '=';
+	public static final String key_template = "%s" + separator + "%s";
+	
 	@Getter
 	private final Object value;
 
 	private ConcurrentMap<String, TrieNode> children = null;
 
-	public TrieNode(String name, Object value) {
-		this.name = name;
+	public TrieNode(Object value) {
 		this.value = value;
 	}
 
 	public TrieNode putIfAbsent(String nodeName, Object value) {
-		return children.computeIfAbsent(nodeName, n -> new TrieNode(nodeName, value));
+		if (children == null) {
+			children = new ConcurrentHashMap<>();
+		}
+		String key = key(nodeName, value);
+		return children.computeIfAbsent(key, n -> new TrieNode(value));
 	}
 
-	public boolean contains(String nodeName) {
-		return children == null ? false : children.containsKey(nodeName);
+	public boolean contains(String key) {
+		return children == null ? false : children.containsKey(key);
 	}
 
 	public Set<Entry<String, TrieNode>> getEntries() {
 		return children == null ? Set.of() : children.entrySet();
 	}
 
-	public TrieNode getNode(String nodeName) {
-		return children == null ? null : children.get(nodeName);
+	public TrieNode getNode(String key) {
+		return children == null ? null : children.get(key);
 	}
 
 	public TrieNode getRandomNode() {
@@ -49,7 +54,16 @@ public class TrieNode {
 	}
 
 	public boolean hasValue() {
-		return value == null;
+		return value != null;
 	}
+	
+	public int size() {
+		return children == null ? 0 : children.size();
+	}
+	
+	private String key(String name, Object value) {
+		return String.format(key_template, name, value);
+	}
+
 
 }

@@ -6,6 +6,15 @@ import org.datum.datasource.model.DataSchema;
 import org.datum.datasource.model.UnorderedStringFieldSet;
 import org.datum.datasource.model.UnorderedTypedFieldSet;
 
+/**
+ * 
+ * Type converter for string-based tuple
+ * 
+ * Used a schema for data conversion
+ * 
+ * @author akaliutau
+ *
+ */
 public class TypeConverter implements Processor<FieldSet> {
 
 	private DataSchema schema;

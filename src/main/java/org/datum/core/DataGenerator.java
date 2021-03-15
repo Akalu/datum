@@ -1,10 +1,15 @@
 package org.datum.core;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.datum.configuration.Configurator;
 import org.datum.generator.Generator;
+import org.datum.reflection.AnnotationProcessors;
+import org.datum.reflection.ReflectionHelper;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The core class implementing the main functionality and responsible for
@@ -14,10 +19,11 @@ import org.datum.generator.Generator;
  *
  * @param <T>
  */
+@Slf4j
 public class DataGenerator<T> {
 
 	private final Configurator configurator;
-	private final List<Generator<?>> generators = new ArrayList<>();
+	private Generator<?> generator = null;
 
 	public DataGenerator(Configurator configurator) {
 		this.configurator = configurator;
@@ -30,17 +36,27 @@ public class DataGenerator<T> {
 	 * @param addressGenerator
 	 */
 	public void addGenerator(Generator<?> generator) {
-		// TODO Auto-generated method stub
-
+		
+		Class<?> clazz = generator.getClass();
+		List<Field> fields = ReflectionHelper.getAllFields(generator);
+		for (Field field : fields) {
+			AnnotationProcessors.processWireAnnotation(generator, configurator, field);
+		}
+		this.generator = generator;
+		log.debug("added class {}", clazz);
 	}
 
+	@SuppressWarnings("unchecked")
 	public T getOne() {
-		// TODO Auto-generated method stub
-		return null;
+		return (T) generator.setData();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> getBatch(int count) {
-		// TODO Auto-generated method stub
-		return null;
+		List<T> list = new ArrayList<>();
+		for (int i = 0; i < count; i++) {
+			list.add((T) generator.setData());
+		}
+		return list;
 	}
 }

@@ -11,6 +11,10 @@ public class OrderedTypedFieldSet extends FieldSet {
 		this.arr = new Object[size];
 	}
 
+	public OrderedTypedFieldSet(Object[] arr) {
+		this.arr = arr;
+	}
+
 	public Object[] values() {
 		return arr == null ? new Object[] {} : arr;
 	}

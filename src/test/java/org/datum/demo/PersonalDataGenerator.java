@@ -6,7 +6,7 @@ import org.datum.annotation.Wire;
 import org.datum.datasource.RandomDataSource;
 import org.datum.generator.Generator;
 import org.datum.generator.GeneratorType;
-import org.datum.pojo.AddressPojo;
+import org.datum.pojo.SimplePojo;
 
 /**
  * The engine analyzes and injects necessary dependencies, which include:
@@ -19,19 +19,18 @@ import org.datum.pojo.AddressPojo;
  * @author akaliutau
  *
  */
-public class AddressGenerator extends Generator<AddressPojo> {
+public class PersonalDataGenerator extends Generator<SimplePojo> {
 	
-	@Wire(source="location:.*", type=GeneratorType.TRIE)
-	private RandomDataSource locations;
+	@Wire(source="person_data", type=GeneratorType.TRIE)
+	private RandomDataSource personaldataSource;
 	
 
 	@Override
-	public AddressPojo setData() {
-		AddressPojo pojo = new AddressPojo();
-		Map<String, Object> location = locations.getData();
-		set(pojo::setCity, "city", location);
-		set(pojo::setState, "state", location);
-		set(pojo::setZipCode, "zip_code", location);
+	public SimplePojo setData() {
+		
+		SimplePojo pojo = new SimplePojo();
+		Map<String, Object> personal = personaldataSource.getData();
+		set(pojo::setFirstName, "first_name", personal);
 		return pojo;
 	}
 	

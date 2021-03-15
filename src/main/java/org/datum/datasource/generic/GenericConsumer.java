@@ -7,11 +7,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class GenericConsumer implements DataConsumer<FieldSet> {
+	
+	private long counter = 0l;
 
 	@Override
 	public void insert(FieldSet record) {
 		// do nothing - used for testing
-		log.info("consume {}", record);
+		log.debug("consume {}", record);
+		counter ++;
+	}
+	
+	@Override
+	public long getCounter() {
+		return counter;
 	}
 
 }
