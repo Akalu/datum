@@ -1,11 +1,11 @@
-package org.datum.demo;
+package org.datum.example;
 
 import java.util.List;
 
 import org.datum.configuration.impl.InMemoryConfigurator;
 import org.datum.core.DataGenerator;
-import org.datum.pojo.AddressPojo;
-import org.datum.pojo.SimplePojo;
+import org.datum.example.pojo.AddressPojo;
+import org.datum.example.pojo.SimplePojo;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,8 +1,8 @@
 package org.datum.configuration.impl;
 
 import org.datum.configuration.Configurator;
+import org.datum.datasource.impl.TrieDataSource;
 import org.datum.datasource.model.DataSchema;
-import org.datum.datasource.model.TrieDataSource;
 import org.datum.generator.GeneratorType;
 
 import lombok.extern.slf4j.Slf4j;

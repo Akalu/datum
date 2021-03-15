@@ -1,8 +1,9 @@
-package org.datum.datasource.processors;
+package org.datum.datasource.processor.impl;
 
 import org.datum.datasource.FieldSet;
 import org.datum.datasource.model.OrderedTypedFieldSet;
 import org.datum.datasource.model.UnorderedTypedFieldSet;
+import org.datum.datasource.processor.Processor;
 
 /**
  * 

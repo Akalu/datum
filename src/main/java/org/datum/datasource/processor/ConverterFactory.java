@@ -1,4 +1,4 @@
-package org.datum.configuration;
+package org.datum.datasource.processor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +12,7 @@ public class ConverterFactory {
 	static {
 		converters.put(String.class.getName(), o -> o);
 		converters.put(Integer.class.getName(), Integer::valueOf);
+		converters.put(Double.class.getName(), Double::valueOf);
 	}
 
 	@SuppressWarnings("unchecked")

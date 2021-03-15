@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Map.Entry;
 
-import org.datum.datasource.model.TrieDataSource;
+import org.datum.datasource.impl.TrieDataSource;
 import org.datum.datasource.model.TrieNode;
 
 public class DebugUtil {
@@ -29,6 +29,6 @@ public class DebugUtil {
 		return ret;
 	}
 	
-
+	
 	
 }

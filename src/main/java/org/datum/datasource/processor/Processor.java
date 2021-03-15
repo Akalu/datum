@@ -1,4 +1,4 @@
-package org.datum.datasource.processors;
+package org.datum.datasource.processor;
 
 public interface Processor<T> {
 	T proceed(T t);

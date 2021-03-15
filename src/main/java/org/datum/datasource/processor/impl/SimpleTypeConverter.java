@@ -1,10 +1,11 @@
-package org.datum.datasource.processors;
+package org.datum.datasource.processor.impl;
 
-import org.datum.configuration.ConverterFactory;
 import org.datum.datasource.FieldSet;
 import org.datum.datasource.model.DataSchema;
 import org.datum.datasource.model.UnorderedStringFieldSet;
 import org.datum.datasource.model.UnorderedTypedFieldSet;
+import org.datum.datasource.processor.ConverterFactory;
+import org.datum.datasource.processor.Processor;
 
 /**
  * 
@@ -12,14 +13,17 @@ import org.datum.datasource.model.UnorderedTypedFieldSet;
  * 
  * Used a schema for data conversion
  * 
+ * Note: this is a simple type converter, which neither change the length of vector nor performs grouping of fields
+ * (f.e. GPS coords can be transformed into special aggregating object)  
+ * 
  * @author akaliutau
  *
  */
-public class TypeConverter implements Processor<FieldSet> {
+public class SimpleTypeConverter implements Processor<FieldSet> {
 
 	private DataSchema schema;
 
-	public TypeConverter(DataSchema schema) {
+	public SimpleTypeConverter(DataSchema schema) {
 		this.schema = schema;
 	}
 

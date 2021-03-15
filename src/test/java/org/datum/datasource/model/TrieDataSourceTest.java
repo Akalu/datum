@@ -2,8 +2,11 @@ package org.datum.datasource.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Map;
 
+import org.datum.datasource.impl.TrieDataSource;
 import org.datum.util.DataUtil;
 import org.datum.util.DebugUtil;
 import org.junit.Test;
@@ -61,7 +64,7 @@ public class TrieDataSourceTest {
 	}
 	
 	@Test
-	public void testPartialRecord() {
+	public void testPartialRecord1() {// last value is absent - the trie will be smaller
 		TrieDataSource trie = new TrieDataSource("test", schema);
 		OrderedTypedFieldSet recordOne = new OrderedTypedFieldSet(3);
 		recordOne.set(0, "CA");
@@ -70,6 +73,23 @@ public class TrieDataSourceTest {
 		
 		Map<String, Object> data = trie.getData();
 		assertNotNull(data);
-		assertEquals(2, data.size());
+		assertEquals(3, data.size());
+	}
+	
+	@Test
+	public void testPartialRecord2() {// value in the middle is absent - the trie will as usual
+		TrieDataSource trie = new TrieDataSource("test", schema);
+		OrderedTypedFieldSet recordOne = new OrderedTypedFieldSet(3);
+		recordOne.set(0, "CA");
+		recordOne.set(2, "34534");
+		trie.insert(recordOne);
+		log.debug("trie {}", DebugUtil.getTrieAsList(trie));
+		log.debug("random data {}", trie.getData());
+		
+		Map<String, Object> data = trie.getData();
+		assertNotNull(data);
+		assertEquals(3, data.size());
+		assertTrue(data.containsKey("state"));
+		assertTrue(data.containsKey("zip_code"));
 	}
 }

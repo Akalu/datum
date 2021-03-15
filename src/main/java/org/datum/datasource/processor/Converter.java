@@ -1,4 +1,4 @@
-package org.datum.configuration;
+package org.datum.datasource.processor;
 
 @FunctionalInterface
 public interface Converter<T> {

@@ -1,7 +1,6 @@
 package org.datum.util;
 
 import java.util.Arrays;
-
 import org.datum.core.Pipeline;
 import org.datum.datasource.DataProvider;
 import org.datum.datasource.FieldSet;
@@ -59,7 +58,9 @@ public class CSVLoader {
 			int count = 0;
 			int totalCount = 0;
 			int invalidCount = 0;
-
+			
+			Timer t = new Timer();
+			
 			while ((nextLine = csvReader.readNext()) != null) {
 				totalCount++;
 				if (null != nextLine) {
@@ -82,6 +83,7 @@ public class CSVLoader {
 			log.debug("total records processed: {}", totalCount);
 			log.debug("inserted: {}", count);
 			log.debug("omitted: {}", invalidCount);
+			t.end();
 
 		} catch (Exception e) {
 			throw new Exception("Error occured while executing file. " + e.getMessage());

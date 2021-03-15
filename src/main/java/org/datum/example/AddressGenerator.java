@@ -1,12 +1,12 @@
-package org.datum.demo;
+package org.datum.example;
 
 import java.util.Map;
 
 import org.datum.annotation.Wire;
 import org.datum.datasource.RandomDataSource;
+import org.datum.example.pojo.AddressPojo;
 import org.datum.generator.Generator;
 import org.datum.generator.GeneratorType;
-import org.datum.pojo.AddressPojo;
 
 /**
  * The engine analyzes and injects necessary dependencies, which include:
@@ -21,7 +21,7 @@ import org.datum.pojo.AddressPojo;
  */
 public class AddressGenerator extends Generator<AddressPojo> {
 	
-	@Wire(source="location:.*", type=GeneratorType.TRIE)
+	@Wire(source="location:us", type=GeneratorType.TRIE)
 	private RandomDataSource locations;
 	
 
@@ -29,6 +29,7 @@ public class AddressGenerator extends Generator<AddressPojo> {
 	public AddressPojo setData() {
 		AddressPojo pojo = new AddressPojo();
 		Map<String, Object> location = locations.getData();
+		pojo.setCountry("us");
 		set(pojo::setCity, "city", location);
 		set(pojo::setState, "state", location);
 		set(pojo::setZipCode, "zip_code", location);

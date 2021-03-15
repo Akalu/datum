@@ -3,8 +3,17 @@ package org.datum.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.datum.datasource.processors.Processor;
+import org.datum.datasource.processor.Processor;
 
+/**
+ * The structure implementing Pipeline pattern
+ * 
+ * Used for chain data processing
+ *  
+ * @author akaliutau
+ *
+ * @param <T>
+ */
 public class Pipeline<T> {
 
 	// final consumer of the data

@@ -1,12 +1,12 @@
-package org.datum.demo;
+package org.datum.example;
 
 import java.util.Map;
 
 import org.datum.annotation.Wire;
 import org.datum.datasource.RandomDataSource;
+import org.datum.example.pojo.SimplePojo;
 import org.datum.generator.Generator;
 import org.datum.generator.GeneratorType;
-import org.datum.pojo.SimplePojo;
 
 /**
  * The engine analyzes and injects necessary dependencies, which include:

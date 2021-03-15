@@ -21,6 +21,9 @@ public class ReflectionHelper {
 			return false;
 		}
 		field.setAccessible(true);
+		if (field.getType().isPrimitive() && fieldValue == null) {// do not set primitive values to null
+			return true;
+		}
 		try {
 			field.set(targetObject, fieldValue);
 			return true;

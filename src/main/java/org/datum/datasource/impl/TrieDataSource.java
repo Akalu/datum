@@ -1,4 +1,4 @@
-package org.datum.datasource.model;
+package org.datum.datasource.impl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,6 +9,9 @@ import java.util.Queue;
 import org.datum.core.DataConsumer;
 import org.datum.datasource.FieldSet;
 import org.datum.datasource.RandomDataSource;
+import org.datum.datasource.model.DataSchema;
+import org.datum.datasource.model.OrderedTypedFieldSet;
+import org.datum.datasource.model.TrieNode;
 
 import lombok.Getter;
 
@@ -70,7 +73,7 @@ public class TrieDataSource implements RandomDataSource, DataConsumer<FieldSet> 
 		TrieNode node = root;
 		int idx = 0;
 		while (node != null) {
-			if (node.hasValue() && node != root) {
+			if (node != root) {
 				ret.put(schema.getName(idx++), node.getValue());
 			}
 			node = node.getRandomNode();
