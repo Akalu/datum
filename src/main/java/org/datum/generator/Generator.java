@@ -10,5 +10,5 @@ public abstract class Generator<T> {
 		setter.accept((T) location.get(key));
 	}
 
-	public abstract T setData();
+	public abstract T genData();
 }

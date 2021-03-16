@@ -12,4 +12,9 @@ public class AddressDataSource implements RandomDataSource{
 		return null;
 	}
 
+	@Override
+	public String name() {
+		return "Address line custom generator";
+	}
+
 }

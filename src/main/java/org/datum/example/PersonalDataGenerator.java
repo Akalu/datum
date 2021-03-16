@@ -8,6 +8,8 @@ import org.datum.example.pojo.SimplePojo;
 import org.datum.generator.Generator;
 import org.datum.generator.GeneratorType;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * The engine analyzes and injects necessary dependencies, which include:
  * 
@@ -19,18 +21,24 @@ import org.datum.generator.GeneratorType;
  * @author akaliutau
  *
  */
+@Slf4j
 public class PersonalDataGenerator extends Generator<SimplePojo> {
 	
 	@Wire(source="person_data", type=GeneratorType.TRIE)
-	private RandomDataSource personaldataSource;
-	
+	private RandomDataSource personaldataSource1;
+
+	@Wire(source="person_data", type=GeneratorType.LAST_NAME)
+	private RandomDataSource personaldataSource2;
+
 
 	@Override
-	public SimplePojo setData() {
+	public SimplePojo genData() {
 		
 		SimplePojo pojo = new SimplePojo();
-		Map<String, Object> personal = personaldataSource.getData();
-		set(pojo::setFirstName, "first_name", personal);
+		Map<String, Object> personal1 = personaldataSource1.getData();
+		set(pojo::setFirstName, "first_name", personal1);
+		Map<String, Object> personal2 = personaldataSource2.getData();
+		set(pojo::setLastName, "last_name", personal2);
 		return pojo;
 	}
 	

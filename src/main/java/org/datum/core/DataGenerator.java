@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.datum.configuration.Configurator;
+import org.datum.exception.DataException;
 import org.datum.generator.Generator;
 import org.datum.reflection.AnnotationProcessors;
 import org.datum.reflection.ReflectionHelper;
@@ -48,14 +49,17 @@ public class DataGenerator<T> {
 
 	@SuppressWarnings("unchecked")
 	public T getOne() {
-		return (T) generator.setData();
+		if (generator == null) {
+			throw new DataException("Cannot figure out which generator to use: Add generator before generating data");
+		}
+		return (T) generator.genData();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> getBatch(int count) {
 		List<T> list = new ArrayList<>();
 		for (int i = 0; i < count; i++) {
-			list.add((T) generator.setData());
+			list.add((T) generator.genData());
 		}
 		return list;
 	}

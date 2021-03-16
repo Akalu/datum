@@ -26,7 +26,7 @@ public class AddressGenerator extends Generator<AddressPojo> {
 	
 
 	@Override
-	public AddressPojo setData() {
+	public AddressPojo genData() {
 		AddressPojo pojo = new AddressPojo();
 		Map<String, Object> location = locations.getData();
 		pojo.setCountry("us");

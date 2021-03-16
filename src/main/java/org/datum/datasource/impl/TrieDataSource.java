@@ -104,4 +104,9 @@ public class TrieDataSource implements RandomDataSource, DataConsumer<FieldSet> 
 		return counter;
 	}
 
+	@Override
+	public String name() {
+		return this.name;
+	}
+
 }
