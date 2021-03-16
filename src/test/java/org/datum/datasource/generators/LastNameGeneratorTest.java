@@ -1,21 +1,24 @@
-package org.datum.datasource.impl;
+package org.datum.datasource.generators;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.datum.datasource.generators.LastNameGenerator;
 import org.datum.util.Timer;
 import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
+
+import static org.datum.datasource.generators.LastNameGenerator.Algorithm.*;
 
 @Slf4j
 public class LastNameGeneratorTest {
 
 	@Test
 	public void functionalTest() {
-		String name1 = LastNameGenerator.generateNameMarkovChainAlgorithm1();
+		String name1 = LastNameGenerator.generateName(MARKOV_CHAIN_ALG_1);
 		log.debug("alg 1: {}", name1);
 
 	}
@@ -24,7 +27,7 @@ public class LastNameGeneratorTest {
 	public void performanceTest() {
 		Timer t1 = new Timer();
 		for (int i = 0; i < 10; i++) {
-			String name1 = LastNameGenerator.generateNameMarkovChainAlgorithm1();
+			String name1 = LastNameGenerator.generateName(MARKOV_CHAIN_ALG_1);
 			log.debug("alg 1: {}", name1);
 		}
 		t1.end();

@@ -1,7 +1,7 @@
 package org.datum.generator;
 
 public enum GeneratorType {
-	LAST_NAME, 
+	PERSONAL_DATA, 
 	TRIE, 
 	RANDOM_ADDRESS_STRING
 }

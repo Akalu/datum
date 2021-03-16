@@ -1,4 +1,4 @@
-package org.datum.pojo;
+package org.datum.datasource.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

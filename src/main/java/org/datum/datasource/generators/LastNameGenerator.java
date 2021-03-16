@@ -1,21 +1,26 @@
-package org.datum.datasource.impl;
+package org.datum.datasource.generators;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
+
+import static org.datum.datasource.generators.CommonGenerator.*;
 
 public class LastNameGenerator {
 
-	static Random random = new Random();
+	public static enum Algorithm {
+		MARKOV_CHAIN_ALG_1
+	}
 
 	private final static String[] prefixDigraphs = new String[] { "en", "re", "er", "th", "on", "in", "an", "or", "st",
 			"ve", "es", "to", "se", "at", "ti", "ar", "as", "co", "io", "ty", "fo", "fi", "ra", "et", "le", "ou", "ma",
 			"tw", "ea", "is", "si", "de", "hi", "al", "ce", "da", "ec", "ur", "ri", "el", "la", "ro", "ta" };
 
-	private final static String[] suffixDigraphs = new String[] { "rt", "te", "ed", "ne", "nd", "ni", "nt", "rs"};
+	private final static String[] suffixDigraphs = new String[] { "rt", "te", "ed", "ne", "nd", "ni", "nt", "rs" };
 
 	private final static String[] majorPrefix = new String[] { "De", "Der", "El", "Fitz", "Mac", "Mc", "O'", "Van" };
 
@@ -33,9 +38,6 @@ public class LastNameGenerator {
 			.compile("(([b-df-hj-np-tv-z])(?!\\2)){2}[b-df-hj-np-tv-z]");
 	private final static Pattern multipleVowelsRegex = Pattern.compile("([aeiou]{3})");
 
-	private final static char[] vowels = { 'a', 'o', 'u', 'i', 'e' };
-	private final static char[] consonants = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r',
-			's', 't', 'v', 'w', 'x', 'y', 'z' };
 	private final static char[] invalidPairs = { 'd', 'g', 'h', 'j', 'k', 'm', 'p', 'r', 's', 'v', 'w', 'x', 'z' };
 
 	private final static String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -47,13 +49,39 @@ public class LastNameGenerator {
 	private final static Set<Character> consonantsSet = toSet(consonants);
 	private final static Set<Character> invalidPairsSet = toSet(invalidPairs);
 
-	public static String generateNameMarkovChainAlgorithm1() {
+	/**
+	 * Factory of available algorithms
+	 * 
+	 * @param algorithm
+	 * @return
+	 */
+
+	private final static Map<Algorithm, Supplier<String>> algs = new HashMap<>();
+
+	static {
+		algs.put(Algorithm.MARKOV_CHAIN_ALG_1, () -> generateNameMarkovChainAlgorithm1());
+	}
+
+	public static String generateName(Algorithm algorithm) {
+		return algs.get(algorithm).get();
+	}
+
+	/**
+	 * Available algorithms
+	 * 
+	 * @param algorithm
+	 * @return
+	 */
+
+	private static String generateNameMarkovChainAlgorithm1() {
 
 		StringBuilder potentialName = new StringBuilder();
 		List<Integer> toCapitilize = new ArrayList<>();
-		if (random.nextInt(10) < 3) {
+		if (random.nextInt(10) < 2) {
 			potentialName.append(getAny(majorPrefix));
 			toCapitilize.add(potentialName.length());
+		}else if (random.nextInt(10) < 2) {
+			potentialName.append(getAny(minorPrefix));
 		} else {
 			toCapitilize.add(0);
 		}
@@ -83,22 +111,6 @@ public class LastNameGenerator {
 		return potentialName.toString();
 	}
 
-	public static Set<Character> toSet(char[] chars) {
-		Set<Character> set = new HashSet<>();
-		for (char c : chars) {
-			set.add(c);
-		}
-		return set;
-	}
-
-	public static String getAny(String[] arr) {
-		return arr[random.nextInt(arr.length)];
-	}
-
-	public static char getAny(char[] arr) {
-		return arr[random.nextInt(arr.length)];
-	}
-
 	public static void setFirstToCapital(StringBuilder s, List<Integer> toCapitilize) {
 		for (Integer idx : toCapitilize) {
 			if (idx < s.length()) {
@@ -120,13 +132,13 @@ public class LastNameGenerator {
 		for (int i = 1; i < n; i++) {
 			char cur = s.charAt(i);
 			if (unique == cur && invalidPairsSet.contains(unique)) {
-				counter ++;
-			}else {
+				counter++;
+			} else {
 				counter = 1;
 			}
 			if (counter == 1) {// collect only unique numbers
 				s.setCharAt(last, unique);
-				last ++;
+				last++;
 			}
 			unique = cur;
 		}

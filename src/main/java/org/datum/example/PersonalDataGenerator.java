@@ -24,10 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PersonalDataGenerator extends Generator<SimplePojo> {
 	
-	@Wire(source="person_data", type=GeneratorType.TRIE)
-	private RandomDataSource personaldataSource1;
+	@Wire(source="names", type=GeneratorType.TRIE)
+	private RandomDataSource names;
 
-	@Wire(source="person_data", type=GeneratorType.LAST_NAME)
+	@Wire(source="person_data", type=GeneratorType.PERSONAL_DATA)
 	private RandomDataSource personaldataSource2;
 
 
@@ -35,7 +35,7 @@ public class PersonalDataGenerator extends Generator<SimplePojo> {
 	public SimplePojo genData() {
 		
 		SimplePojo pojo = new SimplePojo();
-		Map<String, Object> personal1 = personaldataSource1.getData();
+		Map<String, Object> personal1 = names.getData();
 		set(pojo::setFirstName, "first_name", personal1);
 		Map<String, Object> personal2 = personaldataSource2.getData();
 		set(pojo::setLastName, "last_name", personal2);

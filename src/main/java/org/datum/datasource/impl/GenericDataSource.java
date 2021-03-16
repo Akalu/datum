@@ -1,4 +1,4 @@
-package org.datum.datasource.generic;
+package org.datum.datasource.impl;
 
 import org.datum.core.DataConsumer;
 import org.datum.datasource.FieldSet;
@@ -6,7 +6,7 @@ import org.datum.datasource.FieldSet;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GenericConsumer implements DataConsumer<FieldSet> {
+public class GenericDataSource implements DataConsumer<FieldSet> {
 	
 	private long counter = 0l;
 

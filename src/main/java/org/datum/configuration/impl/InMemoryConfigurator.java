@@ -82,12 +82,12 @@ public class InMemoryConfigurator extends Configurator {
 		log.info("datasource {} updated {} times", namesDS.getName(), namesDS.getCounter());
 		log.info("unique nodes {}", namesDS.countNodes());
 
-		register("person_data", GeneratorType.TRIE, namesDS);
+		register("names", GeneratorType.TRIE, namesDS);
 		
 
 		// last name datasource
 		
-		register("person_data", GeneratorType.LAST_NAME, new NameDataSource());
+		register("person_data", GeneratorType.PERSONAL_DATA, new NameDataSource());
 
 	}
 

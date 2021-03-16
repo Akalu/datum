@@ -2,7 +2,7 @@ package org.datum.util;
 
 import org.datum.core.Pipeline;
 import org.datum.datasource.FieldSet;
-import org.datum.datasource.generic.GenericConsumer;
+import org.datum.datasource.impl.GenericDataSource;
 import org.datum.datasource.model.DataSchema;
 import org.datum.datasource.processor.Processor;
 import org.datum.datasource.processor.impl.SimpleTypeConverter;
@@ -38,7 +38,7 @@ public class CSVLoaderTest {
 		
 		log.info("schema: {}", schema);
 		
-		GenericConsumer consumer = new GenericConsumer(); 
+		GenericDataSource consumer = new GenericDataSource(); 
 		Pipeline<FieldSet> pipe = new Pipeline.Builder<FieldSet>()
 				.addConsumer(consumer)
 				.addProcessor(typeConverter)
@@ -62,7 +62,7 @@ public class CSVLoaderTest {
 		
 		log.info("schema: {}", schema);
 		
-		GenericConsumer consumer = new GenericConsumer(); 
+		GenericDataSource consumer = new GenericDataSource(); 
 		Pipeline<FieldSet> pipe = new Pipeline.Builder<FieldSet>()
 				.addConsumer(consumer)
 				.addProcessor(typeConverter)

@@ -16,6 +16,7 @@ import org.datum.datasource.model.TrieNode;
 import lombok.Getter;
 
 /**
+ * The generic structure useful for data of any type/origin
  * 
  * The source of unstructured data organized as a trie
  * 
