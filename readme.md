@@ -1,6 +1,6 @@
 # About
 
-This is the library for fake records generation (with main aim to provide sample data for database and ML integration testing and similiar stuff)
+This is the library for fake records generation (with main aim to provide sample data for database and ML integration testing and similar stuff)
 
 
 The main features:
@@ -20,6 +20,8 @@ The main features:
 ```
 mvn clean install
 ```
+
+# Examples of generated data
 
 
 

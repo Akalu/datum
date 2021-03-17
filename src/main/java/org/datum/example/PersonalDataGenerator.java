@@ -28,7 +28,7 @@ public class PersonalDataGenerator extends Generator<SimplePojo> {
 	private RandomDataSource names;
 
 	@Wire(source="person_data", type=GeneratorType.PERSONAL_DATA)
-	private RandomDataSource personaldataSource2;
+	private RandomDataSource personalData;
 
 
 	@Override
@@ -37,8 +37,13 @@ public class PersonalDataGenerator extends Generator<SimplePojo> {
 		SimplePojo pojo = new SimplePojo();
 		Map<String, Object> personal1 = names.getData();
 		set(pojo::setFirstName, "first_name", personal1);
-		Map<String, Object> personal2 = personaldataSource2.getData();
+		set(pojo::setGender, "gender", personal1);
+		
+		Map<String, Object> personal2 = personalData.getData();
 		set(pojo::setLastName, "last_name", personal2);
+		set(pojo::setEmail, "email", personal2);
+		set(pojo::setCreditCard, "credit_card", personal2);
+		set(pojo::setAge, "age", personal2);
 		return pojo;
 	}
 	

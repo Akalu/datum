@@ -4,11 +4,11 @@ import org.datum.configuration.Configurator;
 import org.datum.core.Pipeline;
 import org.datum.datasource.DataProvider;
 import org.datum.datasource.FieldSet;
-import org.datum.datasource.impl.NameDataSource;
+import org.datum.datasource.impl.PersonDataSource;
 import org.datum.datasource.impl.TrieDataSource;
 import org.datum.datasource.model.DataSchema;
 import org.datum.datasource.processor.Processor;
-import org.datum.datasource.processor.impl.OrderConverter;
+import org.datum.datasource.processor.impl.SimpleOrderConverter;
 import org.datum.datasource.processor.impl.SimpleTypeConverter;
 import org.datum.datasource.providers.ResourceDataProvider;
 import org.datum.generator.GeneratorType;
@@ -37,7 +37,7 @@ public class InMemoryConfigurator extends Configurator {
 		schema.addType("longitude", "java.lang.Double", 5);
 
 		Processor<FieldSet> typeConverter = new SimpleTypeConverter(schema);
-		Processor<FieldSet> orderConverter = new OrderConverter(usLocationMergePath);
+		Processor<FieldSet> orderConverter = new SimpleOrderConverter(usLocationMergePath);
 
 		DataProvider rdp = new ResourceDataProvider("us_locations.csv");
 		CSVLoader loader = new CSVLoader();
@@ -60,11 +60,11 @@ public class InMemoryConfigurator extends Configurator {
 		
 		// first name datasource
 		DataSchema schemaName = new DataSchema(6);
-		schemaName.addType("gender", "java.lang.String", 0);
+		schemaName.addType("gender", "org.datum.model.Gender", 0);
 		schemaName.addType("first_name", "java.lang.String", 1);
 
-		Processor<FieldSet> typeConverterName = new SimpleTypeConverter(schema);
-		Processor<FieldSet> orderConverterName = new OrderConverter(usLocationMergePath);
+		Processor<FieldSet> typeConverterName = new SimpleTypeConverter(schemaName);
+		Processor<FieldSet> orderConverterName = new SimpleOrderConverter(firstNameMergePath);
 
 		DataProvider rdpName = new ResourceDataProvider("names.csv");
 
@@ -87,7 +87,7 @@ public class InMemoryConfigurator extends Configurator {
 
 		// last name datasource
 		
-		register("person_data", GeneratorType.PERSONAL_DATA, new NameDataSource());
+		register("person_data", GeneratorType.PERSONAL_DATA, new PersonDataSource());
 
 	}
 

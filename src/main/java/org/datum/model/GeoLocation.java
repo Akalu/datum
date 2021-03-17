@@ -1,4 +1,4 @@
-package org.datum.datasource.model;
+package org.datum.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location {
+public class GeoLocation {
 	private double latitude;
 	private double longitude;
 }

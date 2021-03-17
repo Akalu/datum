@@ -7,6 +7,8 @@ import java.io.Reader;
 import org.datum.datasource.DataProvider;
 
 public class ResourceDataProvider implements DataProvider {
+	
+	private final Class<?> classLoader = getClass();
 
 	private String name;
 
@@ -16,7 +18,7 @@ public class ResourceDataProvider implements DataProvider {
 
 	@Override
 	public Reader getReader() throws FileNotFoundException {
-		return new InputStreamReader(getClass().getResourceAsStream(name));
+		return new InputStreamReader(classLoader.getResourceAsStream(name));
 	}
 
 }

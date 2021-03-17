@@ -1,5 +1,9 @@
 package org.datum.datasource.model;
 
+import java.io.Serializable;
+
+import org.datum.model.CardType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +13,11 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreditCard {
+public class CreditCard implements Serializable {
+	private static final long serialVersionUID = -8007354727854375798L;
+
+	private CardType type;
 	private String number;
-	private int securityCode;
+	private String securityCode;
 	private String expdate;
 }

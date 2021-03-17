@@ -1,10 +1,14 @@
 package org.datum.datasource.generators;
 
+import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 import org.datum.datasource.model.CreditCard;
+import org.datum.model.CardType;
 
 import static org.datum.datasource.generators.CommonGenerator.*;
 
@@ -13,23 +17,21 @@ public class CreditCardGenerator {
 	/**
 	 * Credit Card Issuer Starts With ( IIN Range ) Length ( Number of digits )
 	 */
-	public String[][] descriptors = { { "American Express", "34, 37", "15" },
+	public String[][] descriptors = { 
+			{ "American Express", "34, 37", "15" },
 			{ "Diners Club - Carte Blanche", "300, 301, 302, 303, 304, 305", "14" },
-			{ "Diners Club - International", "36", "14" }, { "Diners Club - USA & Canada", "54", "16" },
+			{ "Diners Club - International", "36", "14" }, 
+			{ "Diners Club - USA & Canada", "54", "16" },
 			{ "Discover", "6011, 622126 to 622925, 644, 645, 646, 647, 648, 649, 65", "16-19" },
-			{ "InstaPayment", "637, 638, 639", "16" }, { "JCB", "3528 to 3589", "16-19" },
+			{ "InstaPayment", "637, 638, 639", "16" }, 
+			{ "JCB", "3528 to 3589", "16-19" },
 			{ "Maestro", "5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763", "16-19" },
-			{ "MasterCard", "51, 52, 53, 54, 55, 222100-272099", "16" }, { "Visa", "4", "13-16, 16-19" },
+			{ "MasterCard", "51, 52, 53, 54, 55, 222100-272099", "16" }, 
+			{ "Visa", "4", "13-16, 16-19" },
 			{ "Visa Electron", "4026, 417500, 4508, 4844, 4913, 4917", "16" }
 
 	};
 
-	public static enum Algorithm {
-		VISA_ALG_1, 
-		MASTERCARD_ALG_1,
-		AMERICAN_EXPRESS_ALG_1,
-		DISCOVER_ALG_1
-	}
 
 	/**
 	 * Factory of available algorithms
@@ -38,32 +40,48 @@ public class CreditCardGenerator {
 	 * @return
 	 */
 
-	private final static Map<Algorithm, Supplier<int[]>> algs = new HashMap<>();
+	private final static Map<CardType, Supplier<int[]>> algs = new HashMap<>();
 
 	static {
-		algs.put(Algorithm.VISA_ALG_1, () -> generateVisaAlgorithm());
-		algs.put(Algorithm.AMERICAN_EXPRESS_ALG_1, () -> generateAmericanExpressAlgorithm());
-		algs.put(Algorithm.MASTERCARD_ALG_1, () -> generateMasterCardAlgorithm());
-		algs.put(Algorithm.DISCOVER_ALG_1, () -> generateDiscoverAlgorithm());
+		algs.put(CardType.VISA, () -> generateVisaAlgorithm());
+		algs.put(CardType.AMERICAN_EXPRESS, () -> generateAmericanExpressAlgorithm());
+		algs.put(CardType.MASTERCARD, () -> generateMasterCardAlgorithm());
+		algs.put(CardType.DISCOVER, () -> generateDiscoverAlgorithm());
 	}
+	
+	private final static RandomString randomDigitString = new RandomString(3, new SecureRandom(), RandomString.digits);
+	private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/YY");
 
 	public static CreditCard generateCard() {
-		return null;
+		CardType alg = getAny(CardType.values());
+		return generateCard(alg);
 	}
 
-	public static CreditCard generateCard(Algorithm algorithm) {
+	public static CreditCard generateCard(CardType algorithm) {
 		int[] prefill = algs.get(algorithm).get();
+		LocalDate date = getRandomDate(1000);// any date in the range from now up to Roughly 3 years from now
 		CreditCard card = new CreditCard();
 		card.setNumber(getNumber(prefill));
+		card.setType(algorithm);
+		card.setExpdate(date.format(formatter));
+		card.setSecurityCode(randomDigitString.nextString());
+		
 		return card;
 	}
 
+	/**
+	 * Visa
+	 */
 	private static int[] generateVisaAlgorithm() {
 		int[] prefill = new int[15];
 		prefill[0] = 4;
 		fillRange(1, 15, prefill);
 		return prefill;
 	}
+
+	/**
+	 * American Express
+	 */
 
 	static final int[] ae = { 4, 7 };
 
@@ -75,6 +93,10 @@ public class CreditCardGenerator {
 		return prefill;
 	}
 
+	/**
+	 * MasterCard
+	 */
+
 	static final int[] mc = { 0, 1, 2, 3, 4, 5 };
 
 	private static int[] generateMasterCardAlgorithm() {
@@ -84,6 +106,11 @@ public class CreditCardGenerator {
 		fillRange(2, 16, prefill);
 		return prefill;
 	}
+
+
+	/**
+	 * Discover
+	 */
 
 	private static int[] generateDiscoverAlgorithm() {
 		int[] prefill = new int[15];

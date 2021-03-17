@@ -1,6 +1,8 @@
 package org.datum.datasource.generators;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -107,7 +109,36 @@ public class LastNameGeneratorTest {
 		LastNameGenerator.setFirstToCapital(sb, toCapitilize);
 		
 	}
+	
+	@Test
+	public void testContainsDoubleConsonants() {
+		assertTrue(LastNameGenerator.containsDoubleConsonants("dfaag"));
+		assertTrue(LastNameGenerator.containsDoubleConsonants("aadfaa"));
+		assertTrue(LastNameGenerator.containsDoubleConsonants("dg"));
+		assertTrue(LastNameGenerator.containsDoubleConsonants("adga"));
+		
+		assertFalse(LastNameGenerator.containsDoubleConsonants("aaa"));
+		assertFalse(LastNameGenerator.containsDoubleConsonants("aa"));
+		assertFalse(LastNameGenerator.containsDoubleConsonants("aaaaaaaaaaa"));
+		assertFalse(LastNameGenerator.containsDoubleConsonants("dafaag"));
+		assertFalse(LastNameGenerator.containsDoubleConsonants(""));
+		assertFalse(LastNameGenerator.containsDoubleConsonants("dafasaga"));
+	}
 
+
+	@Test
+	public void testContainsDoubleVowels() {
+		assertTrue(LastNameGenerator.containsDoubleVowels("dfaag"));
+		assertTrue(LastNameGenerator.containsDoubleVowels("aa"));
+		assertTrue(LastNameGenerator.containsDoubleVowels("sadsdfsassaa"));
+		assertTrue(LastNameGenerator.containsDoubleVowels("aaa"));
+		assertTrue(LastNameGenerator.containsDoubleVowels("aaaa"));
+
+		assertFalse(LastNameGenerator.containsDoubleVowels("dafag"));
+		assertFalse(LastNameGenerator.containsDoubleVowels("adafag"));
+		assertFalse(LastNameGenerator.containsDoubleVowels("a"));
+		assertFalse(LastNameGenerator.containsDoubleVowels("da"));
+	}
 
 
 }

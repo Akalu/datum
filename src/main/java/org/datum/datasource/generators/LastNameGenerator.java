@@ -35,8 +35,8 @@ public class LastNameGenerator {
 
 	// used to filter our rouge names
 	private final static Pattern multipleConsonantsRegex = Pattern
-			.compile("(([b-df-hj-np-tv-z])(?!\\2)){2}[b-df-hj-np-tv-z]");
-	private final static Pattern multipleVowelsRegex = Pattern.compile("([aeiou]{3})");
+			.compile("[b-df-hj-np-tv-z]{2}");
+	private final static Pattern multipleVowelsRegex = Pattern.compile("([aeiou]{2})");
 
 	private final static char[] invalidPairs = { 'd', 'g', 'h', 'j', 'k', 'm', 'p', 'r', 's', 'v', 'w', 'x', 'z' };
 
@@ -144,6 +144,20 @@ public class LastNameGenerator {
 		}
 		s.setCharAt(last, unique);
 		s.setLength(last + 1);
+	}
+	
+	public static boolean containsDoubleConsonants(String s) {
+		if (s == null) {
+			return false;
+		}
+		return multipleConsonantsRegex.matcher(s.trim()).find();
+	}
+	
+	public static boolean containsDoubleVowels(String s) {
+		if (s == null) {
+			return false;
+		}
+		return multipleVowelsRegex.matcher(s.trim()).find();
 	}
 
 }

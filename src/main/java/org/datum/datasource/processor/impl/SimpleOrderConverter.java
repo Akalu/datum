@@ -8,16 +8,18 @@ import org.datum.datasource.processor.Processor;
 /**
  * 
  * Used to convert unordered set to ordered one
- * Basically this is just an re-arrangement of elements
+ * Basically this is just a subprocess for re-arrangement of elements
+ * 
+ * This implementation does not re-order elements at all
  * 
  * @author akaliutau
  *
  */
-public class OrderConverter implements Processor<FieldSet> {
+public class SimpleOrderConverter implements Processor<FieldSet> {
 
 	private String[] mergePath;
 
-	public OrderConverter(String[] mergePath) {
+	public SimpleOrderConverter(String[] mergePath) {
 		this.mergePath = mergePath;
 	}
 

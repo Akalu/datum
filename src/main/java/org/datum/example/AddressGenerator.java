@@ -7,6 +7,7 @@ import org.datum.datasource.RandomDataSource;
 import org.datum.example.pojo.AddressPojo;
 import org.datum.generator.Generator;
 import org.datum.generator.GeneratorType;
+import org.datum.model.GeoLocation;
 
 /**
  * The engine analyzes and injects necessary dependencies, which include:
@@ -33,6 +34,8 @@ public class AddressGenerator extends Generator<AddressPojo> {
 		set(pojo::setCity, "city", location);
 		set(pojo::setState, "state", location);
 		set(pojo::setZipCode, "zip_code", location);
+		set(pojo::setLocation, () -> new GeoLocation((double)location.get("latitude"), (double)location.get("longitude")));
+
 		return pojo;
 	}
 	

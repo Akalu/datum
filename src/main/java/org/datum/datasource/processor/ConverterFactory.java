@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.datum.model.Gender;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,6 +20,7 @@ public class ConverterFactory {
 		converters.put(Integer.class.getName(), Integer::valueOf);
 		converters.put(Long.class.getName(), Long::valueOf);
 		converters.put(Double.class.getName(), Double::valueOf);
+		converters.put(Gender.class.getName(), Gender::valueOf);
 	}
 
 	@SuppressWarnings("unchecked")
