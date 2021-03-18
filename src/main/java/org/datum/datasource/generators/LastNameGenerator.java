@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import static org.datum.datasource.generators.CommonGenerator.*;
 
 /**
+ * Random last name generator on the basis of Markov chain
  * 
  * @author akaliutau
  *

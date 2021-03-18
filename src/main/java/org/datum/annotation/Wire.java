@@ -7,7 +7,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import org.datum.generator.GeneratorType;
-import org.datum.generator.NameGeneratorType;
 
 @Retention(RUNTIME)
 @Target(FIELD)

@@ -12,6 +12,12 @@ import org.datum.model.CreditCard;
 
 import static org.datum.datasource.generators.CommonGenerator.*;
 
+/**
+ * Implements logic for card data
+ * 
+ * @author akaliutau
+ *
+ */
 public class CreditCardGenerator {
 
 	/**

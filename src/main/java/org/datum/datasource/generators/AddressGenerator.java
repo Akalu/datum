@@ -3,7 +3,7 @@ package org.datum.datasource.generators;
 import static org.datum.datasource.generators.CommonGenerator.*;
 
 /**
- * Used to generate a fictitiuos address using a simple combination algorithm
+ * Used to generate a fictitious address using a simple combination algorithm
  * 
  * @author akaliutau
  *

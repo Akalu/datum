@@ -7,6 +7,11 @@ import java.util.function.Supplier;
 
 import static org.datum.datasource.generators.CommonGenerator.*;
 
+/**
+ * Random email generator
+ * @author akaliutau
+ *
+ */
 public class EmailGenerator {
 	
 	private static final String[] providers = {"@gmail.com", "@live.com", "@yahoo.com"};

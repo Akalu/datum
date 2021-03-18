@@ -5,6 +5,11 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Secure random string generator
+ * @author akaliutau
+ *
+ */
 public class RandomString {
 	
 	public static final int defaultLength = 21;
