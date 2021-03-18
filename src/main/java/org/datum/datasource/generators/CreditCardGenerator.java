@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import org.datum.datasource.model.CreditCard;
 import org.datum.model.CardType;
+import org.datum.model.CreditCard;
 
 import static org.datum.datasource.generators.CommonGenerator.*;
 

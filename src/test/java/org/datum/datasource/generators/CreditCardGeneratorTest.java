@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import static org.datum.model.CardType.*;
 
-import org.datum.datasource.model.CreditCard;
+import org.datum.model.CreditCard;
 
 @Slf4j
 public class CreditCardGeneratorTest {

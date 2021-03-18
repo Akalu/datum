@@ -1,8 +1,6 @@
-package org.datum.datasource.model;
+package org.datum.model;
 
 import java.io.Serializable;
-
-import org.datum.model.CardType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

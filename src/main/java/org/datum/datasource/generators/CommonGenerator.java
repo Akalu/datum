@@ -7,6 +7,14 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.datum.model.CharType;
+
+/**
+ * Random generator utility class
+ * 
+ * @author akaliutau
+ *
+ */
 public class CommonGenerator {
 
 	static Random random = new Random();
@@ -14,6 +22,13 @@ public class CommonGenerator {
 	final static char[] vowels = { 'a', 'o', 'u', 'i', 'e' };
 	final static char[] consonants = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't',
 			'v', 'w', 'x', 'y', 'z' };
+	
+	final static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	final static String digits = "0123456789";
+	final static String alphaNumeric = alpha + digits;
+	final static char[] alphaChars = alpha.toCharArray();	
+	final static char[] digitChars = digits.toCharArray();	
+	final static char[] alphaNumericChars = alphaNumeric.toCharArray();	
 
 	public static Set<Character> toSet(char[] chars) {
 		Set<Character> set = new HashSet<>();
@@ -92,6 +107,13 @@ public class CommonGenerator {
 
 		long randomEpochDay = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
 		return LocalDate.ofEpochDay(randomEpochDay); // random date between the range
+	}
+	
+	public static void fill(char[] arr, CharType charType) {
+		char[] chars = charType.equals(CharType.LETTERS) ? alphaChars : charType.equals(CharType.DIGITS) ? digitChars : alphaNumericChars;
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = getAny(chars);
+		}
 	}
 
 }

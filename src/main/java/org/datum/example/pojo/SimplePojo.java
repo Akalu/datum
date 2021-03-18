@@ -3,7 +3,7 @@ package org.datum.example.pojo;
 import java.io.Serializable;
 import java.util.UUID;
 
-import org.datum.datasource.model.CreditCard;
+import org.datum.model.CreditCard;
 import org.datum.model.Gender;
 
 import lombok.AllArgsConstructor;
