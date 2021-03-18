@@ -6,12 +6,12 @@ import java.util.UUID;
 import org.datum.model.CreditCard;
 import org.datum.model.Gender;
 
+import com.google.gson.Gson;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,5 +25,11 @@ public class SimplePojo implements Serializable {
 	private int age;
 	private String email;
 	private CreditCard creditCard;
+	
+	@Override
+	public String toString() {
+		Gson g = new Gson();
+		return g.toJson(this);
+	}
 	
 }
