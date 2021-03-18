@@ -24,7 +24,10 @@ public class AddressGenerator extends Generator<AddressPojo> {
 	
 	@Wire(source="location:us", type=GeneratorType.TRIE)
 	private RandomDataSource locations;
-	
+
+	@Wire(source="location:any", type=GeneratorType.RANDOM_ADDRESS_STRING)
+	private RandomDataSource address;
+
 
 	@Override
 	public AddressPojo genData() {
@@ -36,6 +39,9 @@ public class AddressGenerator extends Generator<AddressPojo> {
 		set(pojo::setZipCode, "zip_code", location);
 		set(pojo::setLocation, () -> new GeoLocation((double)location.get("latitude"), (double)location.get("longitude")));
 
+		Map<String, Object> adr = address.getData();
+		set(pojo::setAddress, "address_line_1", adr);
+		
 		return pojo;
 	}
 	

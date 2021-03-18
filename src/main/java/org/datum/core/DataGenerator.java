@@ -36,7 +36,7 @@ public class DataGenerator<T> {
 	 * 
 	 * @param addressGenerator
 	 */
-	public void addGenerator(Generator<?> generator) {
+	public void setGenerator(Generator<?> generator) {
 		
 		Class<?> clazz = generator.getClass();
 		List<Field> fields = ReflectionHelper.getAllFields(generator);

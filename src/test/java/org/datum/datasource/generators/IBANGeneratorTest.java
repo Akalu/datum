@@ -16,6 +16,7 @@ public class IBANGeneratorTest {
 		
 		IBANRecord rec = IBANGenerator.generate("GB");
 		log.debug("Generated {}", rec.getUnformattedNumber());
+		log.debug("Generated {}", rec.getFormattedNumber());
 	}
 	
 	@Test

@@ -68,6 +68,21 @@ public class IBANRecord {
 		return sb.toString();
 	}
 	
+	public String getFormattedNumber() {
+		String str = getUnformattedNumber();
+		StringBuilder sb = new StringBuilder();
+		int counter = 4;
+		for (char c : str.toCharArray()) {
+			if (counter == 0) {
+				counter = 4;
+				sb.append(' ');
+			}
+			sb.append(c);
+			counter --;
+		}
+		return sb.toString();
+	}
+	
 	
 
 }

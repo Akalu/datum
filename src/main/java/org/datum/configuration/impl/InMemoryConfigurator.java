@@ -4,6 +4,7 @@ import org.datum.configuration.Configurator;
 import org.datum.core.Pipeline;
 import org.datum.datasource.DataProvider;
 import org.datum.datasource.FieldSet;
+import org.datum.datasource.impl.AddressDataSource;
 import org.datum.datasource.impl.PersonDataSource;
 import org.datum.datasource.impl.TrieDataSource;
 import org.datum.datasource.model.DataSchema;
@@ -57,6 +58,11 @@ public class InMemoryConfigurator extends Configurator {
 		log.info("unique nodes {}", locationDS.countNodes());
 
 		register("location:us", GeneratorType.TRIE, locationDS);
+		
+		// addresses source
+		DataProvider addresses = new ResourceDataProvider("key_words.txt");
+		register("location:any", GeneratorType.RANDOM_ADDRESS_STRING, new AddressDataSource(addresses));
+
 		
 		// first name datasource
 		DataSchema schemaName = new DataSchema(6);

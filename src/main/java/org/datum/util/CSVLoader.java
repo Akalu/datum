@@ -59,13 +59,12 @@ public class CSVLoader {
 			int totalCount = 0;
 			int invalidCount = 0;
 			
-			Timer t = new Timer();
+			CheckPoint t = new CheckPoint();
 			
 			while ((nextLine = csvReader.readNext()) != null) {
 				totalCount++;
 				if (null != nextLine) {
 					try {
-						log.debug("read : {}", Arrays.toString(nextLine));
 						pipe.process(new UnorderedStringFieldSet(nextLine));
 						count++;
 					} catch (IllegalArgumentException e) {
@@ -74,7 +73,6 @@ public class CSVLoader {
 					}
 				}
 				if (count % batchSize == 0) {
-
 					log.debug("saving data, batch {}", count / batchSize);
 				}
 			}

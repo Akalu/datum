@@ -33,8 +33,8 @@ public abstract class Configurator {
 		return found.get(0);
 	}
 
-	public void register(String label, GeneratorType type, RandomDataSource datatsource) {
-		sources.put(key(label, type), datatsource);
+	public void register(String label, GeneratorType type, RandomDataSource datasource) {
+		sources.put(key(label, type), datasource);
 	}
 
 	private static String key(String label, GeneratorType type) {

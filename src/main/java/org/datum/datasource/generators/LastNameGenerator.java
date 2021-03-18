@@ -10,6 +10,11 @@ import java.util.regex.Pattern;
 
 import static org.datum.datasource.generators.CommonGenerator.*;
 
+/**
+ * 
+ * @author akaliutau
+ *
+ */
 public class LastNameGenerator {
 
 	public static enum Algorithm {

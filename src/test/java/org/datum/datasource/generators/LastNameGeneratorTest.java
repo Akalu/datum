@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.datum.datasource.generators.LastNameGenerator;
-import org.datum.util.Timer;
+import org.datum.util.CheckPoint;
 import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class LastNameGeneratorTest {
 
 	@Test
 	public void performanceTest() {
-		Timer t1 = new Timer();
+		CheckPoint t1 = new CheckPoint();
 		for (int i = 0; i < 10; i++) {
 			String name1 = LastNameGenerator.generateName(MARKOV_CHAIN_ALG_1);
 			log.debug("alg 1: {}", name1);

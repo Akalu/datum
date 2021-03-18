@@ -32,21 +32,21 @@ import static org.datum.model.CharsGroup.*;
  * Legend:
  * 
  * b = National bank code / BIC bank code
- * <p/>
+ * 
  * s = Branch code
- * <p/>
+ * 
  * x = National check digit
- * <p/>
+ * 
  * c = Account number
- * <p/>
+ * 
  * a = Balance account number
- * <p/>
+ * 
  * t = Account type (cheque account, savings account etc.)
- * <p/>
+ * 
  * n = Owner account number ("1", "2"etc.)
- * <p/>
+ * 
  * i = Account holder's kennitala (national identification number)
- * <p/>
+ * 
  * 
  * The kk after the two-character ISO country code represents the check digits
  * calculated from the rest of the IBAN characters. If it is a constant for the

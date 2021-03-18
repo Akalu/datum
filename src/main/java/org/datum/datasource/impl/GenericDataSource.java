@@ -5,6 +5,11 @@ import org.datum.datasource.FieldSet;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Added for debugging purposes only
+ * @author akaliutau
+ *
+ */
 @Slf4j
 public class GenericDataSource implements DataConsumer<FieldSet> {
 	
