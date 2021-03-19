@@ -8,7 +8,9 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
-import static org.datum.datasource.generators.CommonGenerator.*;
+import static org.datum.datasource.generators.RandomGeneratorUtils.*;
+
+import static org.datum.datasource.generators.Algorithm.*;
 
 /**
  * Random last name generator on the basis of Markov chain
@@ -18,9 +20,6 @@ import static org.datum.datasource.generators.CommonGenerator.*;
  */
 public class LastNameGenerator {
 
-	public static enum Algorithm {
-		MARKOV_CHAIN_ALG_1
-	}
 
 	private final static String[] prefixDigraphs = new String[] { "en", "re", "er", "th", "on", "in", "an", "or", "st",
 			"ve", "es", "to", "se", "at", "ti", "ar", "as", "co", "io", "ty", "fo", "fi", "ra", "et", "le", "ou", "ma",
@@ -65,7 +64,7 @@ public class LastNameGenerator {
 	private final static Map<Algorithm, Supplier<String>> algs = new HashMap<>();
 
 	static {
-		algs.put(Algorithm.MARKOV_CHAIN_ALG_1, () -> generateNameMarkovChainAlgorithm1());
+		algs.put(LAST_NAME_MARKOV_CHAIN_1, () -> generateNameMarkovChainAlgorithm1());
 	}
 
 	public static String generateName(Algorithm algorithm) {

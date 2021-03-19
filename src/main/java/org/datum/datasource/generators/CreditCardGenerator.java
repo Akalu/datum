@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import org.datum.model.CardType;
 import org.datum.model.CreditCard;
 
-import static org.datum.datasource.generators.CommonGenerator.*;
+import static org.datum.datasource.generators.RandomGeneratorUtils.*;
 
 /**
  * Implements logic for card data
@@ -63,12 +63,12 @@ public class CreditCardGenerator {
 		return generateCard(alg);
 	}
 
-	public static CreditCard generateCard(CardType algorithm) {
-		int[] prefill = algs.get(algorithm).get();
+	public static CreditCard generateCard(CardType cardType) {
+		int[] prefill = algs.get(cardType).get();
 		LocalDate date = getRandomDate(1000);// any date in the range from now up to Roughly 3 years from now
 		CreditCard card = new CreditCard();
 		card.setNumber(getNumber(prefill));
-		card.setType(algorithm);
+		card.setType(cardType);
 		card.setExpdate(date.format(formatter));
 		card.setSecurityCode(randomDigitString.nextString());
 		

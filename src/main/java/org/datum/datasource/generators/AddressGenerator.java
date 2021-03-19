@@ -1,6 +1,6 @@
 package org.datum.datasource.generators;
 
-import static org.datum.datasource.generators.CommonGenerator.*;
+import static org.datum.datasource.generators.RandomGeneratorUtils.*;
 
 /**
  * Used to generate a fictitious address using a simple combination algorithm

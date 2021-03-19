@@ -15,7 +15,7 @@ import org.datum.model.CharType;
  * @author akaliutau
  *
  */
-public class CommonGenerator {
+public class RandomGeneratorUtils {
 
 	static Random random = new Random();
 

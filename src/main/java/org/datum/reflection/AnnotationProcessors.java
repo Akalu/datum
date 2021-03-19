@@ -20,7 +20,6 @@ public class AnnotationProcessors {
 		throw new IllegalStateException("Utility class");
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void processWireAnnotation(Generator<?> target, Configurator configurator, Field field) {
 		Class<?> cls = field.getType();
 		log.debug("field: {}", field);

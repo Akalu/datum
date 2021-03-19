@@ -13,14 +13,14 @@ import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static org.datum.datasource.generators.LastNameGenerator.Algorithm.*;
+import static org.datum.datasource.generators.Algorithm.*;
 
 @Slf4j
 public class LastNameGeneratorTest {
 
 	@Test
 	public void functionalTest() {
-		String name1 = LastNameGenerator.generateName(MARKOV_CHAIN_ALG_1);
+		String name1 = LastNameGenerator.generateName(LAST_NAME_MARKOV_CHAIN_1);
 		log.debug("alg 1: {}", name1);
 
 	}
@@ -29,7 +29,7 @@ public class LastNameGeneratorTest {
 	public void performanceTest() {
 		CheckPoint t1 = new CheckPoint();
 		for (int i = 0; i < 10; i++) {
-			String name1 = LastNameGenerator.generateName(MARKOV_CHAIN_ALG_1);
+			String name1 = LastNameGenerator.generateName(LAST_NAME_MARKOV_CHAIN_1);
 			log.debug("alg 1: {}", name1);
 		}
 		t1.end();

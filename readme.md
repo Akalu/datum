@@ -1,4 +1,5 @@
-# About
+About
+=========
 
 This is the library for fake records generation (with main aim to provide sample data for database and ML integration testing, etc)
 
@@ -9,27 +10,42 @@ For example, IBAN bank account number can be validated against checksum, length 
 In modern distributed systems the geographical location in requested json can trigger the processing of this request on very specific node in cluster, 
 as routes are quite often are federated on the basis of location, and so on.
 
-This library has the aim to solve such problems. 
+Overview
+=========
 
-The main features:
+The project consists from two modules, ``code`` and ``datasource``
 
-* Annotation-based engine with ability to inject fake data source
+Core module includes low-level functionality, and basic data types.
 
-* Rich configuration via annotations or through java code
+The main features of core library (implemented through major classes from core module):
 
 * Fully customizable data generator classes
 
 * High-performance and memory-effective engine
 
-* Accurate, realistic and human-readable generated data (currently US and UK - styled addresses are supported, more than 1000 real female and male first names, different generators for surnames, and more)
+* Accurate, realistic and human-readable generated data (currently US and UK - styled addresses are supported, different generators for surnames, and more)
 
-# How to install
+
+
+The second module, ```datasource```, is a higher level wrapper which uses core functionality and introduces the concept of Random Datasource, which can be used to build a complex POJOs.
+
+Main features:
+
+
+* Annotation-based engine with ability to inject fake data source
+
+* Rich configuration via annotations or through java code
+
+
+Installation
+=============
 
 ```
 mvn clean install
 ```
 
-# Examples of generated data
+Examples of generated data
+===========================
 
 Geographical location (state, city, zip code and location are real, the address line is generated)
 
@@ -97,5 +113,5 @@ Personal data
 
 # Example of using
 
-See the org.datum.example.SimpleDemo class
+See the org.datum.example.SimpleDemo class in datasource module and unit tests
 

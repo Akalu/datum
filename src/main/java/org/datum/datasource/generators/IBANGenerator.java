@@ -221,7 +221,7 @@ public class IBANGenerator {
 		}
 		IBANRecord rec = ibanMap.get(countryCode).clone();
 		for (CharsGroup group : rec.getGroups()) {
-			CommonGenerator.fill(group.getChars(), group.getType());
+			RandomGeneratorUtils.fill(group.getChars(), group.getType());
 		}
 		if (!rec.hasDefaultChecksum()) {
 			int checkSum = calculateCheckSum(rec.getUnformattedNumber(), rec.getLength());

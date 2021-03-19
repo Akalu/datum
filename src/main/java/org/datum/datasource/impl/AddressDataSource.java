@@ -15,7 +15,7 @@ import org.datum.util.CheckPoint;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static org.datum.datasource.generators.CommonGenerator.*;
+import static org.datum.datasource.generators.RandomGeneratorUtils.*;
 
 /**
  * A linear data source to generate random strings using a simple combination algorithm

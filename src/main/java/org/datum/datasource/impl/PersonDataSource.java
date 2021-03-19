@@ -12,10 +12,8 @@ import org.datum.datasource.generators.EmailGenerator;
 import org.datum.datasource.generators.LastNameGenerator;
 import org.datum.model.Gender;
 
-import static org.datum.datasource.generators.LastNameGenerator.Algorithm.*;
-import static org.datum.datasource.generators.EmailGenerator.Algorithm.*;
-import static org.datum.datasource.generators.CommonGenerator.*;
-
+import static org.datum.datasource.generators.RandomGeneratorUtils.*;
+import static org.datum.datasource.generators.Algorithm.*;
 /**
  * 
  * Used to generate personal data (last name, email, credit card number, gender, etc)
@@ -40,8 +38,8 @@ public class PersonDataSource implements RandomDataSource{
 		
 		Map<String, Object> res = new HashMap<>();
 		
-		res.put("last_name", LastNameGenerator.generateName(MARKOV_CHAIN_ALG_1));
-		res.put("email", EmailGenerator.generateEmail(RANDOM_MAIL_ALG_1));
+		res.put("last_name", LastNameGenerator.generateName(LAST_NAME_MARKOV_CHAIN_1));
+		res.put("email", EmailGenerator.generateEmail(EMAIL_RANDOM_1));
 		res.put("credit_card", CreditCardGenerator.generateCard());
 		res.put("gender", getAnyDistributed(Gender.values(), genderDistribution));
 		res.put("age", getAnyInRange(18, 100));
