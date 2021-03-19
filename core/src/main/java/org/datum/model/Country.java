@@ -11,6 +11,6 @@ public class Country {
 	private String name;
 	private Region region;
 	private SubRegion subRegion;
-	private String countryCode;
+	private CountryCode countryCode;
 	private int phoneCode;
 }
