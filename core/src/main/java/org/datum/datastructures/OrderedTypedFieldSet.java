@@ -1,8 +1,7 @@
 package org.datum.datastructures;
 
 public class OrderedTypedFieldSet extends FieldSet {
-	private static final long serialVersionUID = 3L;
-
+	
 	private final Object[] arr;
 
 	public OrderedTypedFieldSet(int size) {

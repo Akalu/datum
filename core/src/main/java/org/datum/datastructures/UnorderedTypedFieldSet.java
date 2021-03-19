@@ -5,8 +5,6 @@ import lombok.ToString;
 @ToString
 public class UnorderedTypedFieldSet extends FieldSet {
 
-	private static final long serialVersionUID = 2L;
-
 	private final Object[] arr;
 
 	public UnorderedTypedFieldSet(int size) {

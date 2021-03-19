@@ -4,8 +4,6 @@ import java.util.Map;
 
 public class UnorderedStringFieldSet extends FieldSet {
 
-	private static final long serialVersionUID = 1L;
-
 	private final String[] arr;
 
 	public UnorderedStringFieldSet(String[] arr) {

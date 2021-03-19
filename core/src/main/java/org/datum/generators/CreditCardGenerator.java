@@ -146,7 +146,7 @@ public class CreditCardGenerator {
 		int n = cardNumber.length;
 		
 		// Reason for this check offset is to figure out whether the final list is going
-		// to be even or odd which will affect calculating the check_sum.
+		// to be even or odd which will affect calculating the checkSum.
 		// This is to avoid reversing the list back and forth which is specified on the
 		// Luhn algorithm.
 		int checkOffset = (n + 1) % 2;

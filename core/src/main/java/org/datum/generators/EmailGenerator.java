@@ -71,11 +71,21 @@ public class EmailGenerator {
 		return sb.toString();
 	}
 
+	/**
+	 * generates emails like jsmith@gmail.com from full name John Smith 
+	 * @param names - at least 2 names expected
+	 * @return
+	 */
 	private static String generateShortMailAddressFromName(String[] names) {
 		return String.format(emailShortTemplate, names[0].charAt(0), names[1], getAny(providers)).toLowerCase();
 	}
 
 
+	/**
+	 * generates emails like john.smith@gmail.com from full name John Smith 
+	 * @param names - at least 2 names expected
+	 * @return
+	 */
 	private static String generateLongMailAddressFromName(String[] names) {
 		return String.format(emailLongTemplate, names[0].charAt(0), names[1], getAny(providers)).toLowerCase();
 	}

@@ -11,7 +11,13 @@ public enum Algorithm {
 	/**
 	 * Last name 
 	 */
-	LAST_NAME_MARKOV_CHAIN_1;
+	LAST_NAME_MARKOV_CHAIN_1,
+	
+	/**
+	 * Phone generators
+	 */
+	PHONE_RANDOM_1(1);
+
 
 	private int args = 0;
 	
