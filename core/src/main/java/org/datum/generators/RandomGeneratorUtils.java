@@ -55,12 +55,8 @@ public class RandomGeneratorUtils {
 	 * val1 val2 val3 
 	 * 0.10 0.60 0.30
 	 * 
-	 * Algorithm: 
-	 * 
-	 * 1) generate random number in the range [0,1) 
-	 * 
-	 * 2) use map to choose the value (index of element) on the basis of input probability f.e. 0.45 =>
-	 * 
+	 * Invoke of getAnyDistributed will return any of {val1, val2, val3} on the
+         * basis of their probability distribution
 	 */
 	public static <T> T getAnyDistributed(T[] arr, double[] probability) {
 		if (arr == null || arr.length == 0) {
