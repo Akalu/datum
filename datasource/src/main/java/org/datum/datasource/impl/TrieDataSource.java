@@ -95,7 +95,7 @@ public class TrieDataSource implements RandomDataSource, DataConsumer<FieldSet> 
 				q.add(entry.getValue());
 			}
 		}
-
+		nodesCounted = true;
 		return nodes;
 	}
 
